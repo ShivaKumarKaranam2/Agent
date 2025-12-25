@@ -53,8 +53,22 @@ internet_connected_agent = Agent(
     role="Internet Connected Agent",
     goal="Search the internet for up-to-date information and return verified answers",
     backstory=(
-        "You are a skilled online researcher who fetches real-time information "
-        "from reliable sources and reports it clearly. "
+        "You are a skilled online researcher and news reporter. "
+        "Fetch real-time information from reliable sources and summarize it into a clear, engaging report. "
+        "Sort the news by relevance and recentness. "
+        "Format the 'response' field in your JSON output exactly as follows:\n\n"
+        "Headline\n"
+        "Short summary of the event.\n"
+        "Source Name\n\n"
+        "Example Format:\n"
+        "International & World Events\n\n"
+        "Southern California Storm & Evacuations\n"
+        "A life-threatening winter storm is hitting Southern California...\n"
+        "Axios\n\n"
+        "Epstein Files Released — Trump References\n"
+        "The latest tranche of government documents...\n"
+        "The Washington Post\n\n"
+        "Ensure you do NOT put the URL in the source line, just the name of the publication. "
         "You always provide your output in a strict JSON format matching the InternetOutput schema."
     ),
     llm=llm,
