@@ -1,0 +1,22 @@
+[project]
+name = "manager-agents"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "apscheduler>=3.11.2",
+    "crewai-tools>=1.7.2",
+    "duckduckgo-search>=8.1.1",
+    "email-validator>=2.3.0",
+    "fastapi>=0.127.0",
+    "langchain>=1.2.0",
+    "litellm>=1.75.3",
+    "streamlit>=1.52.2",
+    "uvicorn>=0.40.0",
+    "groq>=1.0.0",
+    "fastapi-sso>=0.17.0",
+    "pypdf>=3.0.0",
+    "crewai>=1.7.2",
+    "langchain-nvidia-ai-endpoints>=1.0.0",
+]
