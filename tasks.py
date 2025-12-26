@@ -23,7 +23,7 @@ document_summarizer_keywords_task = Task(
     )
 
 query_responder_task = Task(
-        description="Respond to the user query: '{query}' based strictly on the document summary and keywords. If the answer is NOT found in the document content, you must set the 'response' field to exactly 'NOT_FOUND_IN_DOCUMENT' (without quotes). Do not attempt to make up an answer.",
+        description="Respond to the user query: '{query}' based strictly on the provided document content. Document Content: {document_content}. If the answer is NOT found or is INSUFFICIENT based on the document content, you must explicitly include the string 'INSUFFICIENT_INFO' in the 'response' field. Do not attempt to make up an answer.",
         expected_output="A JSON object with 'query' and 'response'.",
         agent=query_responder_agent,
         tools=[document_query_answering_tool],
@@ -43,9 +43,9 @@ manager_planning_task = Task(
         "Analyze the user's input to determine the execution plan. "
         "User Input: Query='{query}', Document Present='{has_document}'. "
         "Strictly follow these rules:\n"
-        "1. IF Document ONLY: Select 'Document Summarizer and Keyword Extractor'. Execution Mode: 'parallel'.\n"
-        "2. IF Document AND Query: Use the document to answer the query. Select'Query Responder Agent'. Execution Mode: 'hierarchical'.\n"
-        "3. IF Query ONLY: Select 'Internet Connected Agent'. Execution Mode: 'parallel'.\n"
+        "1. IF Document ONLY: Select 'Document Summarizer and Keyword Extractor'.\n"
+        "2. IF Document AND Query: Select 'Query Responder Agent' ONLY. Do NOT select 'Internet Connected Agent'. The system will handle fallback if needed.\n"
+        "3. IF Query ONLY (no doc): Select 'Internet Connected Agent'.\n"
         "Output a STRICT JSON object matching ManagerDecision schema."
     ),
     expected_output="A JSON object defining the execution plan.",

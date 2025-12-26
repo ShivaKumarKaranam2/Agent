@@ -135,7 +135,7 @@ if run_button:
                 if isinstance(task_out.pydantic, ResponderOutput):
                     # Robust check (case insensitive substring)
                     resp_text = task_out.pydantic.response.lower()
-                    if "not_found" in resp_text or "no_document" in resp_text:
+                    if "not_found" in resp_text or "no_document" in resp_text or "insufficient_info" in resp_text:
                         needs_fallback = True
                         break
 
@@ -185,8 +185,6 @@ if st.session_state.results:
 
                         # --- Responder Output ---
                         elif isinstance(pydantic_obj, ResponderOutput):
-                            if "not_found" in pydantic_obj.response.lower() or "no_document" in pydantic_obj.response.lower():
-                                continue
                                 
                             with st.container(border=True):
                                 st.subheader("🙋‍♂️ Query Response")
