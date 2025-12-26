@@ -44,8 +44,8 @@ manager_planning_task = Task(
         "User Input: Query='{query}', Document Present='{has_document}'. "
         "Strictly follow these rules:\n"
         "1. IF Document ONLY: Select 'Document Summarizer and Keyword Extractor'. Execution Mode: 'parallel'.\n"
-        "2. IF Document AND Query: ALWAYS select 'Query Responder Agent' AND 'Internet Connected Agent'. Execution Mode: 'parallel'.\n"
-        "3. IF Query ONLY (no doc): Select 'Internet Connected Agent'. Execution Mode: 'hierarchical'.\n"
+        "2. IF Document AND Query: Use the document to answer the query. Select'Query Responder Agent'. Execution Mode: 'hierarchical'.\n"
+        "3. IF Query ONLY: Select 'Internet Connected Agent'. Execution Mode: 'parallel'.\n"
         "Output a STRICT JSON object matching ManagerDecision schema."
     ),
     expected_output="A JSON object defining the execution plan.",

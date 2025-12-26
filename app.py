@@ -210,10 +210,7 @@ if st.session_state.results:
                         st.subheader(f"Agent: {task_out.agent}")
                         st.info(task_out.raw)
             
-            # --- Fallback Output Display ---
             if res.get("fallback_output"):
-                st.markdown("---")
-                st.markdown("### 🤖 Agent: Internet Connected Agent (Fallback)")
                 if hasattr(res["fallback_output"], "pydantic"):
                     fb_pydantic = res["fallback_output"].pydantic
                     if isinstance(fb_pydantic, InternetOutput):
